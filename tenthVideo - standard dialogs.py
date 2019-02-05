@@ -61,6 +61,32 @@ class Dialog(QtWidgets.QDialog):
         buttonOK.clicked.connect(self.accept)
         buttonCancel.clicked.connect(self.reject)
 
+    def accept(self):
+
+
+        class GreaterThanFive(BaseException): pass
+        class IsZero(BaseException): pass
+
+        try:
+            if self.spinBox.value() > 5:
+                raise(GreaterThanFive, "The SpinBox value cannot be greater than 5")
+            elif self.spinBox.value() == 0:
+                raise(IsZero, "The Spinbox value cannot be equal to 0")
+            else:
+                QtWidgets.QDialog.accept()
+
+        except(GreaterThanFive) as x:
+            QtWidgets.QMessageBox.warning(self, __appname__, str(x))
+            self.spinBox.selectAll()
+            self.spinBox.setFocus()
+            return
+
+        except(IsZero) as x:
+            QtWidgets.QMessageBox.warning(self, __appname__, str(x))
+            self.spinBox.selectAll()
+            self.spinBox.setFocus()
+            return
+
 
 app = QtWidgets.QApplication(sys.argv)
 form = Program()
