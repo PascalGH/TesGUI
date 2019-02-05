@@ -17,14 +17,6 @@ class Program(QtWidgets.QDialog):
         self.label1 = QtWidgets.QLabel("Label 1 result")
         self.label2 = QtWidgets.QLabel("Label 2 result")
 
-        
- #       openButton.clicked.connect(self.open)
- #       saveButton.clicked.connect(self.save)
- #       closeButton.clicked.connect(self.close)
-
-        
-
-
         layout = QtWidgets.QVBoxLayout()
         layout.addWidget(openButton)
         layout.addWidget(self.label1)
@@ -42,9 +34,6 @@ class Program(QtWidgets.QDialog):
             self.label2.setText("Checkbox is: " + str(dialog.checkBox.isChecked()))
         else:
             QtWidgets.QMessageBox.warning(self, __appname__, "Dialog Cancelled")
-
-#        self.dial.valueChanged.connect(self.spinbox.setValue)
-#        self.spinbox.valueChanged.connect(self.dial.setValue)
 
 
 class Dialog(QtWidgets.QDialog):
@@ -65,16 +54,8 @@ class Dialog(QtWidgets.QDialog):
         layout.addWidget(buttonOK)
         self.setLayout(layout)
 
-        buttonOK.clicked.connect(self.accept())
-        buttonCancel.clicked.connect(self.reject())
-
-
-
-
-
-
-
-
+        buttonOK.clicked.connect(self.accept)
+        buttonCancel.clicked.connect(self.reject)
 
 
 app = QtWidgets.QApplication(sys.argv)
