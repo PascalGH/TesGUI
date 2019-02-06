@@ -64,8 +64,14 @@ class Dialog(QtWidgets.QDialog):
     def accept(self):
 
 
-        class GreaterThanFive(BaseException): pass
-        class IsZero(BaseException): pass
+        class GreaterThanFive(Exception):
+            def __init__(self, msg):
+                self.msg = msg
+
+
+        class IsZero(Exception):
+            def __init__(self, msg):
+                self.msg = msg
 
         try:
             if self.spinBox.value() > 5:
@@ -75,14 +81,14 @@ class Dialog(QtWidgets.QDialog):
             else:
                 QtWidgets.QDialog.accept()
 
-        except(GreaterThanFive) as x:
-            QtWidgets.QMessageBox.warning(self, __appname__, str(x))
+        except(GreaterThanFive) as error:
+            QtWidgets.QMessageBox.warning(self, __appname__, str(error.value))
             self.spinBox.selectAll()
             self.spinBox.setFocus()
             return
 
-        except(IsZero) as x:
-            QtWidgets.QMessageBox.warning(self, __appname__, str(x))
+        except(IsZero) as error:
+            QtWidgets.QMessageBox.warning(self, __appname__, str(error.value))
             self.spinBox.selectAll()
             self.spinBox.setFocus()
             return
