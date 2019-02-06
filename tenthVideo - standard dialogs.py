@@ -83,13 +83,13 @@ class Dialog(QtWidgets.QDialog):
             else:
                 QtWidgets.QDialog.accept(self)
 
-        except(GreaterThanFive) as error:
+        except GreaterThanFive as error:
             QtWidgets.QMessageBox.warning(self, __appname__, str(error.msg))
             self.spinBox.selectAll()
             self.spinBox.setFocus()
             return
 
-        except(IsZero) as error:
+        except IsZero as error:
             QtWidgets.QMessageBox.warning(self, __appname__, str(error.msg))
             self.spinBox.selectAll()
             self.spinBox.setFocus()
