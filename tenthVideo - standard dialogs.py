@@ -61,6 +61,8 @@ class Dialog(QtWidgets.QDialog):
         buttonOK.clicked.connect(self.accept)
         buttonCancel.clicked.connect(self.reject)
 
+        buttonOK.setFocus()
+
     def accept(self):
 
 
@@ -75,20 +77,20 @@ class Dialog(QtWidgets.QDialog):
 
         try:
             if self.spinBox.value() > 5:
-                raise(GreaterThanFive, "The SpinBox value cannot be greater than 5")
+                raise GreaterThanFive("The SpinBox value cannot be greater than 5")
             elif self.spinBox.value() == 0:
-                raise(IsZero, "The Spinbox value cannot be equal to 0")
+                raise IsZero("The Spinbox value cannot be equal to 0")
             else:
-                QtWidgets.QDialog.accept()
+                QtWidgets.QDialog.accept(self)
 
         except(GreaterThanFive) as error:
-            QtWidgets.QMessageBox.warning(self, __appname__, str(error.value))
+            QtWidgets.QMessageBox.warning(self, __appname__, str(error.msg))
             self.spinBox.selectAll()
             self.spinBox.setFocus()
             return
 
         except(IsZero) as error:
-            QtWidgets.QMessageBox.warning(self, __appname__, str(error.value))
+            QtWidgets.QMessageBox.warning(self, __appname__, str(error.msg))
             self.spinBox.selectAll()
             self.spinBox.setFocus()
             return
