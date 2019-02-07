@@ -94,7 +94,7 @@ class Dialog(QtWidgets.QDialog):
             self.spinBox.selectAll()
             self.spinBox.setFocus()
             return
-
+tenthVideo - standard dialogs.py
 
 app = QtWidgets.QApplication(sys.argv)
 form = Program()
